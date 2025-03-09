@@ -1,6 +1,6 @@
 mixin table-tree(items, level=1)
     each item, index in items
-        - const prefix = Array(level + 1).join("--> ")
+        - const prefix = Array(level + 1).join("-- ")
         tr 
             td 
                 input(
@@ -17,7 +17,7 @@ mixin table-tree(items, level=1)
                 height="auto"
                 )
             td #{prefix}#{item.title}
-            td #{item.parent_id}
+            //- td #{item.parent_id}
             td 
                 input(
                     type="number"

@@ -152,12 +152,19 @@ module.exports.edit = async (req, res) =>{
             deleted: false,
             _id: req.params.id
         }
+
+        const data = await ProductCategory.findOne(find);
     
-        const record = await ProductCategory.findOne(find);
-    
+        const records = await ProductCategory.find({
+            deleted: false
+        });
+
+        const newRecords = createTreeHelper.tree(records);
+
         res.render("admin/pages/products-category/edit.pug", {
-            pageTitle:"Chỉnh sửa danh mục",
-            record: record
+            pageTitle:"Chỉnh sửa danh mục sản phẩm",
+            data: data,
+            records: newRecords
         });
     } catch (error) {
         req.flash('error', `Danh mục không tồn tại!`);
@@ -172,10 +179,6 @@ module.exports.editPatch = async (req, res) =>{
         req.body.position = count + 1;
     }else{
         req.body.position = parseInt(req.body.position);
-    }
-    
-    if(req.file){
-        req.body.thumbnail = `/uploads/${req.file.filename}`;
     }
 
     try {
