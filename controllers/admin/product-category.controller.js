@@ -180,6 +180,10 @@ module.exports.editPatch = async (req, res) =>{
     }else{
         req.body.position = parseInt(req.body.position);
     }
+    
+    if(req.file){
+        req.body.thumbnail = `/uploads/${req.file.filename}`;
+    }
 
     try {
         await ProductCategory.updateOne({ _id: req.params.id }, req.body);
@@ -198,12 +202,19 @@ module.exports.detail = async (req, res) =>{
             deleted: false,
             _id: req.params.id
         }
+
+        const data = await ProductCategory.findOne(find);
     
-        const record = await ProductCategory.findOne(find);
+        const records = await ProductCategory.find({
+            deleted: false
+        });
+
+        const newRecords = createTreeHelper.tree(records);
     
         res.render("admin/pages/products-category/detail.pug", {
-            pageTitle: record.title,
-            record: record
+            pageTitle: data.title,
+            data: data,
+            records: newRecords
         });
     } catch (error) {
         req.flash('error', `Danh mục không tồn tại!`);
