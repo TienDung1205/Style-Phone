@@ -42,30 +42,15 @@ block main
             ) #{product.description}
     
     if(product.price)
-        div(class="form-group")
-            label(for="price") Giá
-            input(
-                type="number"
-                class="form-control"
-                id="price"
-                name="price"
-                value=product.price
-                min="0"
-                readonly
-            )
+        div(class="mb-4")
+            span Giá :
+            span(class="text-success font-weight-bold fs-6 ml-2") #{product.price.toLocaleString('vi-VN')}đ
     
     if(product.discountPercentage)
-        div(class="form-group")
-            label(for="discount") Giảm giá
-            input(
-                type="number"
-                class="form-control"
-                id="discount"
-                name="discountPercentage"
-                value=product.discountPercentage
-                min="0"
-                readonly
-            )
+       div(class="mb-4")
+            span Giảm giá :
+            span(class="text-danger font-weight-bold fs-5 ml-2") #{product.discountPercentage.toLocaleString('vi-VN')}đ
+
     if(product.stock)
         div(class="form-group")
             label(for="stock") Số lượng
@@ -106,7 +91,7 @@ block main
             )
     if(product.status)
         div(class="mb-4")
-            span Trạng thái:  
+            span Trạng thái:
             if(product.status === 'active')
                 span(class = "badge badge-success") Hoạt động
             else 
