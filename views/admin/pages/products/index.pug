@@ -45,6 +45,7 @@ block main
                             th Hình ảnh
                             th Tiêu đề
                             th Giá
+                            th Giảm giá
                             th Số lượng
                             th Vị trí sản phẩm
                             th Trạng thái 
@@ -68,7 +69,8 @@ block main
                                     height="auto"
                                     )
                                 td #{item.title}
-                                td #{item.price}$
+                                td #{item.price.toLocaleString('vi-VN')}đ
+                                td #{item.discountPercentage.toLocaleString('vi-VN')}đ
                                 td #{item.stock}
                                 td 
                                     input(
