@@ -8,7 +8,7 @@ module.exports.index = async (req, res) => {
     }).sort({position : "desc"});
 
     const newProducts = products.map((item) => {
-        item.priceNew = item.price - item.discountPercentage;
+        item.newPrice = item.price - item.discountPercentage;
         return item;
     });
     res.render("client/pages/products/index.pug", {

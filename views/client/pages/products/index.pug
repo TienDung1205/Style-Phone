@@ -21,7 +21,7 @@ block main
                             .inner-content
                                 h3.inner-title #{item.title}
                                 if item.discountPercentage
-                                    .inner-price-new #{item.priceNew.toLocaleString('vi-VN')}đ
+                                    .inner-price-new #{item.newPrice.toLocaleString('vi-VN')}đ
                                     .inner-price-old #{item.price.toLocaleString('vi-VN')}đ
                                     .inner-discount Giảm #{item.discountPercentage.toLocaleString('vi-VN')}đ
                                 else 
