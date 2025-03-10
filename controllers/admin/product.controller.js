@@ -211,10 +211,17 @@ module.exports.detail = async (req, res) =>{
         }
     
         const product = await Product.findOne(find);
+
+        const category = await ProductCategory.find({
+            deleted: false
+        });
+        
+        const newCategory = createTreeHelper.tree(category);
     
         res.render("admin/pages/products/detail.pug", {
             pageTitle: product.title,
-            product: product
+            product: product,
+            category: newCategory
         });
     } catch (error) {
         req.flash('error', `Sản phẩm không tồn tại!`);
